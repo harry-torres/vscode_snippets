@@ -116,6 +116,30 @@
 			"",
 			"export default new ${1/(.*)/${1:/capitalize}/}Controller();"
 		]
+	},
+	"model":{
+		"prefix": "model",
+		"body": [
+			"$0import Sequelize, { Model } from 'sequelize';",
+			"",
+			"class ${1/(.*)/${1:/capitalize}/} extends Model {",
+			"  static init(sequelize) {",
+			"    super.init(",
+			"      {",
+			"        id: Sequelize.INTEGER,",
+			"        name: Sequelize.STRING,",
+			"      },",
+			"      {",
+			"        sequelize,",
+			"      }",
+			"    );",
+			"",
+			"    return this;",
+			"  }",
+			"}",
+			"",
+			"export default ${1/(.*)/${1:/capitalize}/};",
+		]
 	}
 		// Place your snippets for javascript here. Each snippet is defined under a snippet name and has a prefix, body and 
 	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
