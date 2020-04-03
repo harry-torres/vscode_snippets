@@ -1,5 +1,123 @@
 {
-	// Place your snippets for javascript here. Each snippet is defined under a snippet name and has a prefix, body and 
+	"route": {
+		"prefix": "route",
+		"body": [
+			"$0import auth from '../../app/middlewares/auth';",
+			"import ${1/(.*)/${1:/capitalize}/}Controller from '../../app/controllers/${1/(.*)/${1:/capitalize}/}Controller';${13:",
+			"import validateIdParam from '../../app/validators/IdParamValidator';}",
+			"${7:// }import validate${1/(.*)/${1:/capitalize}/} from '../../app/validators/${1/(.*)/${1:/capitalize}/}Validator';",
+			"",
+			"export default function(routes) {",
+			"  const route = '/${1/(.*)/${1:/downcase}/}s';${2:",
+			"",
+			"  routes.get(",
+			"    // Index",
+			"    route,",
+			"    auth,",
+			"    ${8:// }validate${1/(.*)/${1:/capitalize}/}.index,",
+			"    ${1/(.*)/${1:/capitalize}/}Controller.index",
+			"  );}${3:",
+			"",
+			"  routes.get(",
+			"    // Show",
+			"    `\\${route\\}/:id`,",
+			"    auth,",
+			"    validateIdParam,",
+			"    ${9:// }validate${1/(.*)/${1:/capitalize}/}.show,",
+			"    ${1/(.*)/${1:/capitalize}/}Controller.show",
+			"  );}${4:",
+			"",
+			"  routes.post(",
+			"    // Store",
+			"    route,",
+			"    auth,",
+			"    ${10:// }validate${1/(.*)/${1:/capitalize}/}.store,",
+			"    ${1/(.*)/${1:/capitalize}/}Controller.store",
+			"  );}${5:",
+			"",
+			"  routes.put(",
+			"    // Update",
+			"    `\\${route\\}/:id`,",
+			"    auth,",
+			"    validateIdParam,",
+			"    ${11:// }validate${1/(.*)/${1:/capitalize}/}.update,",
+			"    ${1/(.*)/${1:/capitalize}/}Controller.update",
+			"  );}${6:",
+			"",
+			"  routes.delete(",
+			"    // Delete",
+			"    `\\${route\\}/:id`,",
+			"    auth,",
+			"    validateIdParam,",
+			"    ${12:// }validate${1/(.*)/${1:/capitalize}/}.delete,",
+			"    ${1/(.*)/${1:/capitalize}/}Controller.delete",
+			"  );}",
+			"}"
+		]
+	},
+	"validator": {
+		"prefix": "validator",
+		"body": [
+			"$0import * as Yup from 'yup';",
+			"import { create${1|Body,Param|}Validator } from '../../utils/validator';",
+			"",
+			"export default {${2:",
+			"  show: create${1}Validator({ schema: Yup.object().shape({\\}) \\}),}${3:",
+			"  index: create${1}Validator({ schema: Yup.object().shape({\\}) \\}),}${4:",
+			"  store: create${1}Validator({ schema: Yup.object().shape({\\}) \\}),}${5:",
+			"  update: create${1}Validator({ schema: Yup.object().shape({\\}) \\}),}${6:",
+			"  delete: create${1}Validator({ schema: Yup.object().shape({\\}) \\}),}",
+			"};",
+		]
+
+	},
+	"controller":{
+		"prefix": "controller",
+		"body": [
+			"$0import ${1/(.*)/${1:/capitalize}/} from '../models/${1/(.*)/${1:/capitalize}/}';",
+			"",
+			"class ${1/(.*)/${1:/capitalize}/}Controller {${2:",
+			"  async index(req, res) {",
+			"  ${3:  //}  const ${1/(.*)/${1:/downcase}/}s = await ${1/(.*)/${1:/capitalize}/}.findAll();",
+			"  ${3:  //}  return res.json(${1/(.*)/${1:/downcase}/}s);",
+			"  \\}",
+			"}${4:",
+			"  async show(req, res) {",
+			"  ${5:  //}  const { id \\} = req.params;",
+			"  ${5:  //}  const ${1/(.*)/${1:/downcase}/} = await ${1/(.*)/${1:/capitalize}/}.findByPk(id);",
+			"  ${5:  //}  return res.json(${1/(.*)/${1:/downcase}/});",
+			"  \\}",
+			"}${6:",
+			"  async store(req, res) {",
+			"  ${7:  //}  const ${1/(.*)/${1:/downcase}/} = await ${1/(.*)/${1:/capitalize}/}.create(req.body);",
+			"  ${7:  //}  return res.json(${1/(.*)/${1:/downcase}/});",
+			"  \\}",
+			"}${8:",
+			"  async update(req, res) {",
+			"  ${9:  //}  const { id \\} = req.params;",
+			"  ${9:  //}  const ${1/(.*)/${1:/downcase}/} = await ${1/(.*)/${1:/capitalize}/}.findByPk(id);",
+			"  ${9:  //}  if (!${1/(.*)/${1:/downcase}/}) {",
+			"  ${9:  //}    return res.status(400).json({ error: '${1/(.*)/${1:/capitalize}/} not found!' \\});",
+			"  ${9:  //}  \\}",
+			"  ${9:  //}  ${1/(.*)/${1:/downcase}/}.update(req.body);",
+			"  ${9:  //}  return res.json(${1/(.*)/${1:/downcase}/});",
+			"  \\}",
+			"}${10:",
+			"  async delete(req, res) {",
+			"  ${11:  //}  const { id \\} = req.params;",
+			"  ${11:  //}  const ${1/(.*)/${1:/downcase}/} = await ${1/(.*)/${1:/capitalize}/}.findByPk(id);",
+			"  ${11:  //}  if (!${1/(.*)/${1:/downcase}/}) {",
+			"  ${11:  //}    return res.status(400).json({ error: '${1/(.*)/${1:/capitalize}/} not found!' \\});",
+			"  ${11:  //}  \\}",
+			"  ${11:  //}  ${1/(.*)/${1:/downcase}/}.destroy();",
+			"  ${11:  //}  return res.json(${1/(.*)/${1:/downcase}/});",
+			"  \\}",
+			"}}",
+			"",
+			"export default new ${1/(.*)/${1:/capitalize}/}Controller();"
+		]
+	}
+		// Place your snippets for javascript here. Each snippet is defined under a snippet name and has a prefix, body and 
 	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
 	// ${1/(.*)/${1:/downcase}/}, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
 	// same ids are connected.
@@ -18,21 +136,4 @@
 	//     // simpler version below works too
 	//     "body": "${1} -> ${1/(.*)/${1:/capitalize}/}"
 	// },
-	"route": {
-		"prefix": "route",
-		"body": [
-			"$0import auth from '../../app/middlewares/auth';",
-			"import ${1/(.*)/${1:/capitalize}/}Controller from '../../app/controllers/${1/(.*)/${1:/capitalize}/}Controller';",
-			"import validate${1/(.*)/${1:/capitalize}/}Store from '../../app/validators/${1/(.*)/${1:/capitalize}/}Store';",
-			"",
-			"export default function(routes) {",
-			"  const route = '/${1/(.*)/${1:/downcase}/}';",
-			"  routes.get(route, auth, index);",
-			"  routes.post(route, validate${1/(.*)/${1:/capitalize}/}Store, ${1/(.*)/${1:/capitalize}/}Controller.store);",
-			"  routes.put(route, auth, ${1/(.*)/${1:/capitalize}/}Controller.update);",
-			"  routes.get(`\\${route}/:id`, auth, ${1/(.*)/${1:/capitalize}/}Controller.show);",
-			"  routes.delete(`\\${route}/:id`, auth, ${1/(.*)/${1:/capitalize}/}Controller.destroy);",
-			"}"
-		]
-	}
 }
